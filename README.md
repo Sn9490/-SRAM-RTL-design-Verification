@@ -1,72 +1,64 @@
 ![Verilog](https://img.shields.io/badge/Verilog-RTL-blue)
-![SystemVerilog](https://img.shields.io/badge/SystemVerilog-Testbench-green)
-![UVM](https://img.shields.io/badge/UVM-Verification-orange)
+![SystemVerilog](https://img.shields.io/badge/SystemVerilog-Verification-green)
+![UVM](https://img.shields.io/badge/UVM-Testbench-orange)
 ![SRAM](https://img.shields.io/badge/SRAM-Memory-red)
-![Functional\_Coverage](https://img.shields.io/badge/Functional-Coverage-yellow)
 ![QuestaSim](https://img.shields.io/badge/QuestaSim-Simulator-blue)
 
 # SRAM_Design_Verification
 
 ## Overview
 
-Designed and verified a Single-Port SRAM using Verilog HDL. Developed a SystemVerilog class-based verification environment and later implemented a reusable UVM-based verification environment to validate SRAM functionality, read/write operations, address decoding, and memory access behavior.
+Designed and verified a Single-Port SRAM using Verilog HDL and SystemVerilog/UVM methodology. Developed a reusable verification environment consisting of interfaces, transaction objects, verification components, packages, and simulation infrastructure to validate SRAM read and write functionality.
 
 ---
 
 ## SRAM Features
 
-* Single-Port SRAM Architecture
-* Synchronous Read Operations
-* Synchronous Write Operations
+* Single-Port Memory Architecture
+* Read Operation
+* Write Operation
 * Address Decoding
-* Memory Storage and Retrieval
-* Parameterized Memory Depth and Data Width
+* Data Storage and Retrieval
+* Memory Access Control
 
 ---
 
 ## RTL Design
 
-### Modules Implemented
+Implemented SRAM RTL in Verilog HDL supporting:
 
-* SRAM Memory Array
-* Address Decoder
-* Read Logic
-* Write Logic
-* Control Logic
-
-### Operations Supported
-
-* Memory Write
 * Memory Read
-* Sequential Access
-* Random Address Access
+* Memory Write
+* Address Access
+* Data Storage
+* Data Retrieval
 
 ---
 
-## Verification Methodology
+## Verification Environment
 
-### SystemVerilog Class-Based Verification
+A reusable verification environment was developed using SystemVerilog and UVM concepts.
 
-Developed a custom verification environment using:
+### Components
 
-* Generator
+* Generator / Sequence
 * Driver
 * Monitor
-* Scoreboard
-* Testcases
-
-### UVM Verification Environment
-
-Implemented reusable UVM components:
-
-* Sequence Item
-* Sequencer
-* Driver
-* Monitor
-* Agent
 * Scoreboard
 * Environment
 * Testcases
+
+### Interface
+
+SystemVerilog interface used to connect verification components with DUT.
+
+### Transaction Objects
+
+Transaction-level objects were developed for stimulus generation and data transfer.
+
+### Packages
+
+Reusable packages were created for transactions, parameters, and shared definitions.
 
 ---
 
@@ -74,41 +66,39 @@ Implemented reusable UVM components:
 
 ### Functional Verification
 
-* Read Operations
-* Write Operations
-* Read-After-Write Scenarios
+* Read Transactions
+* Write Transactions
+* Consecutive Read Operations
+* Consecutive Write Operations
+* Read After Write Operations
 * Random Address Access
-* Boundary Address Conditions
-* Data Integrity Validation
 
-### Protocol Checks
+### Data Integrity Checks
 
-* Address Stability
-* Write Enable Functionality
-* Memory Read Correctness
-* Data Consistency Checks
+* Expected vs Actual Data Comparison
+* Memory Content Validation
+* Address Verification
 
 ---
 
 ## Test Scenarios
 
-* Single Read Transaction
-* Single Write Transaction
-* Consecutive Read Operations
-* Consecutive Write Operations
+* Single Read
+* Single Write
+* Multiple Reads
+* Multiple Writes
 * Random Read/Write Operations
-* Read-After-Write Verification
 * Boundary Address Testing
 
 ---
 
 ## Results
 
-* Successfully designed a Single-Port SRAM in Verilog.
-* Verified memory read and write functionality.
-* Validated address decoding and memory access operations.
-* Developed both class-based and UVM-based verification environments.
-* Debugged and resolved functional mismatches using waveform analysis.
+* Successfully designed SRAM RTL using Verilog.
+* Developed reusable verification environment.
+* Verified SRAM read and write functionality.
+* Validated memory access operations through simulation.
+* Debugged functional mismatches using waveform analysis.
 
 ---
 
@@ -123,29 +113,55 @@ Implemented reusable UVM components:
 
 ---
 
-## Repository Structure
+## Project Structure
 
 ```text
 SRAM_Design_Verification
 │
-├── rtl/
-├── tb/
-├── uvm_tb/
-├── sequences/
-├── driver/
-├── monitor/
-├── scoreboard/
-├── tests/
-├── waveforms/
-├── docs/
-└── README.md
+├── Comps/
+├── DUT/
+├── Interface/
+├── Objects/
+├── Packages/
+├── Sim/
+└── Top/
 ```
+
+### Directory Description
+
+#### DUT
+
+Contains SRAM RTL design files.
+
+#### Interface
+
+SystemVerilog interfaces connecting DUT and verification components.
+
+#### Objects
+
+Transaction classes and stimulus objects.
+
+#### Comps
+
+Verification components such as Driver, Monitor, Scoreboard, and Environment.
+
+#### Packages
+
+Shared package files and common definitions.
+
+#### Top
+
+Top-level testbench and integration files.
+
+#### Sim
+
+Simulation scripts, compilation commands, and execution files.
 
 ---
 
-## Future Improvements
+## Future Enhancements
 
-* Functional Coverage Collection
+* Functional Coverage
 * Assertion-Based Verification (SVA)
+* Parameterized SRAM Architecture
 * Dual-Port SRAM Support
-* Memory Error Injection Testing
